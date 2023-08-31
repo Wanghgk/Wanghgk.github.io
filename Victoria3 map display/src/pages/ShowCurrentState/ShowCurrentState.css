@@ -1,0 +1,9 @@
+.CurrentState {
+    margin: 10px 10px;
+    color: #111;
+    padding-bottom: 10px;
+}
+.CurrentState span {
+    display: block;
+    margin-top: 10px;
+}

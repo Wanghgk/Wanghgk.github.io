@@ -1,0 +1,9 @@
+.Map{
+    left:0;
+}
+
+.World{
+    position: absolute;
+    background-color: #669999;
+    z-index: -1145141919810;
+}

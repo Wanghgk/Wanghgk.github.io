@@ -1,0 +1,32 @@
+.StateBox {
+    text-indent: 0px;
+    overflow: hidden;
+    position:absolute;
+    pointer-events: none;
+}
+
+.BorderBox{
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+}
+
+.Border{
+    --visible:hidden;
+    pointer-events: none;
+    visibility: var(--visible);
+    transform: scale(1);
+    transform-origin: top left;
+}
+
+.Pic {
+    --widthacc:100;
+    --stateColor:white;
+    --imageIndex:0;
+    pointer-events: auto;
+    filter: drop-shadow(calc(var(--widthacc) * 1px) 0px var(--stateColor));
+    position: relative;
+    z-index: var(--imageIndex);
+    transform: scale(1);
+    transform-origin: top left;
+}

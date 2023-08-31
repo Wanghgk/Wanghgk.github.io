@@ -1,0 +1,24 @@
+.operate-table {
+    position: relative;
+    background-color: rgba(240,240,240,0.4);
+    border-radius: 5px;
+}
+
+.Search {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CountryInput {
+    margin-top: 20px;
+    width: 90%;
+    height: 30px;
+}
+
+.CountryButton {
+    margin-top: 8px;
+    height: 30px;
+    width: 70px;
+}
