@@ -6,13 +6,16 @@ import Search from "./pages/Search/Search";
 
 import './App.css';
 export default function App(){
-    const element = useRoutes(routes)
-    const scale = 0.3;
+    const element = useRoutes(routes);
+    const scrollContainerRef = React.createRef();
+
     return (
         <div>
 
             <div className="list-edition">
-                <img className="logo" src="./logo.jpg" alt="main logo"/>
+                <div className={"logo-div"}>
+                    <img className="logo" src="./logo.jpg" alt="main logo"/>
+                </div>
                 <ul className="menu">
                     <li>
                         <NavLink className="edition-item" to="/">首页</NavLink>
@@ -26,17 +29,12 @@ export default function App(){
                 </ul>
             </div>
 
-
-            <div className={"main"}>
-                <div className={"search-bar"}>
-                    <Search/>
-                </div>
-
-                <div className={"map"} style={{'--scale':scale}}>
-                    {element}
-                </div>
+            <div className={"search-bar"}>
+                <Search/>
             </div>
-
+            <div className={"main"}>
+                {element}
+            </div>
         </div>
     )
 }

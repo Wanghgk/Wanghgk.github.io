@@ -3,12 +3,16 @@
     overflow: hidden;
     position:absolute;
     pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .BorderBox{
     pointer-events: none;
     position: absolute;
     overflow: hidden;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .Border{
@@ -17,6 +21,8 @@
     visibility: var(--visible);
     transform: scale(1);
     transform-origin: top left;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .Pic {
@@ -29,4 +35,6 @@
     z-index: var(--imageIndex);
     transform: scale(1);
     transform-origin: top left;
+    user-select: none;
+    -webkit-user-drag: none;
 }

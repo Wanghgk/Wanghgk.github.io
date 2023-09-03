@@ -1,9 +1,29 @@
-.Map{
-    left:0;
+::-webkit-scrollbar{
+    display:none;
 }
 
-.World{
+.map{
+    left:0;
+
+}
+
+.world{
     position: absolute;
     background-color: #669999;
     z-index: -1145141919810;
+}
+
+.scale {
+    --scale: 0.3;
+    scale: var(--scale);
+    float: left;
+}
+
+.scroll-container {
+    top: var(--top-height);
+    height: calc(100vh - var(--top-height));
+    position: relative;
+    width: 100%;
+    overflow: scroll;
+    scroll-behavior: auto;
 }

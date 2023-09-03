@@ -10,16 +10,23 @@
   position: fixed;
   width: 100%;
   height: var(--top-height);
-  background-color: rgb(30,30,45);
+  background-color: rgb(122, 109, 101);
   display: flex;
   flex-direction: row;
   justify-content: space-between ;
 }
 
+.logo-div {
+  line-height: var(--top-height);
+  display: flex;
+  align-items: center;
+}
+
 .logo {
-  width: var(--top-height);
-  height: var(--top-height);
+  width: calc(var(--top-height) - 10px);
+  height: calc(var(--top-height) - 10px);
   margin-left: 5px;
+  border-radius: 10px;
 }
 
 .menu {
@@ -83,26 +90,17 @@
   cursor: pointer;
 }
 
-.main {
-  overflow: scroll;
-  top: var(--top-height);
-  height: calc(100vh - var(--top-height));
-  position: relative;
-  width: 100%;
-}
+
 
 .search-bar {
   z-index: 8;
   position: fixed;
   top: calc(var(--top-height) + 15px);
   left: 15px;
+  pointer-events: none;
 }
 
-.map {
-  --scale: 0.3;
-  scale: var(--scale);
-  float: left;
-}
+
 /*.edition-item.active{*/
 /*  color: greenyellow;*/
 /*}*/

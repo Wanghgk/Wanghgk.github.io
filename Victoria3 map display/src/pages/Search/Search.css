@@ -1,7 +1,12 @@
 .operate-table {
+    --left:15px;
+    --top:calc(var(--top-height) + 15px);
     position: relative;
     background-color: rgba(240,240,240,0.4);
     border-radius: 5px;
+    left: var(--left)px;
+    top: var(--top)px;
+    pointer-events: auto;
 }
 
 .Search {
@@ -21,4 +26,5 @@
     margin-top: 8px;
     height: 30px;
     width: 70px;
+    user-select: none;
 }

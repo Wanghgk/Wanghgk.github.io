@@ -47,7 +47,7 @@ export default class State extends React.Component {
 
         if (this.isInState(offsetX,offsetY)) {
             this.setState({imageIndex: 1});
-            SubPub.publish("mouseInState",{stateName:stateName,country:country,originalCountry:originalCountry})
+            SubPub.publish("mouseInState",{stateName:stateName,country:country,originalCountry:originalCountry});
         }else if(!(this.isInState(offsetX,offsetY)))
             this.setState({imageIndex:(imageIndex-1)});
     }
@@ -56,7 +56,7 @@ export default class State extends React.Component {
         SubPub.subscribe('globalCountry',(_,data)=>{
             this.globalCountry = data.globalCountry;
         })
-        SubPub.publish('globalCountry',{globalCountry:'GBR'})
+        SubPub.publish('globalCountry',{globalCountry:'GBR'});
         const {country} = this.props;
         const color = Color[country];
         this.setState({currentColor:color,country:country,originalCountry:country});
@@ -71,11 +71,11 @@ export default class State extends React.Component {
         // console.log(fileName,isClicked)
         if(fileName !== undefined) {
             return (<div>
-                        <div className="StateBox" style={{textIndent: -1 * PngWidth,left:left,top:bottom}}>
-                            <img className="Pic" src={fileName} alt={stateName} onMouseMove={(e)=>{this.handleMouseMove(e)}} onClick={(e)=>{this.handleClick(e)}} style={{'--widthacc':width,'--stateColor':currentColor,'--imageIndex':imageIndex}}/>
+                        <div className="StateBox" draggable={"false"} style={{textIndent: -1 * PngWidth,left:left,top:bottom}}>
+                            <img className="Pic" src={fileName} alt={stateName} draggable={"false"} onMouseMove={(e)=>{this.handleMouseMove(e)}} onClick={(e)=>{this.handleClick(e)}} style={{'--widthacc':width,'--stateColor':currentColor,'--imageIndex':imageIndex}}/>
                         </div>
-                        <div className="BorderBox" style={{left:left,top:bottom}}>
-                            <img className="Border" src={borderfileName} alt={stateName + "`s border"} style={{'--visible':isClicked?"hidden":"visible"}}/>
+                        <div className="BorderBox" draggable={"false"} style={{left:left,top:bottom}}>
+                            <img className="Border" src={borderfileName} alt={stateName + "`s border"} draggable={"false"} style={{'--visible':isClicked?"hidden":"visible"}}/>
                         </div>
                     </div>)
         }

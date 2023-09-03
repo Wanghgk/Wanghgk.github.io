@@ -1,5 +1,6 @@
 import React from "react"
 import SubPub from "pubsub-js";
+import ChineseName from "../../states_l_simp_chinese.json"
 
 import "./ShowCurrentState.css"
 
@@ -8,6 +9,8 @@ export default class ShowCurrentState extends React.Component {
         super();
         this.state={globalCountry:"GBR",currentState:"未选中",currentCountry:"未选中",originalCountry:"未选中"};
     }
+
+    Chinese = '';
 
     componentDidMount() {
         SubPub.subscribe("globalCountry",(_,data)=>{
@@ -30,7 +33,7 @@ export default class ShowCurrentState extends React.Component {
                 </span>
                 <span>
                     <p>当前地区：</p>
-                    <p>{currentState}</p>
+                    <p>{ChineseName[currentState] ? ChineseName[currentState] : currentState}</p>
                 </span>
                 <span>
                     <p>该地区现属国家：{currentCountry}</p>
