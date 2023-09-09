@@ -52,7 +52,7 @@ export default class Map extends React.Component {
                                 states.map((e)=>{
                                     let country = Country[e.stateName];
                                     let color = Color[country];
-                                    return <State scale={scale} fileName={"./"+edition+"_states_doubleTransparent/"+e.stateName+".png"} borderfileName={"./"+edition+"_statesBorder_transparent/"+e.stateName+".png"} key={e.id} stateName={e.stateName} left={e.left} right={e.right} up={e.up} bottom={e.bottom} statePng={e.statePng} width={e.right-e.left+1} height={e.up-e.bottom+1} color={color} country={country}/>
+                                    return <State scale={scale} id={e.id} fileName={"./"+edition+"_states_doubleTransparent/"+e.stateName+".png"} borderfileName={"./"+edition+"_statesBorder_transparent/"+e.stateName+".png"} key={e.id} stateName={e.stateName} left={e.left} right={e.right} up={e.up} bottom={e.bottom} statePng={e.statePng} width={e.right-e.left+1} height={e.up-e.bottom+1} color={color} country={country}/>
                                 })
                             }
                         </div>

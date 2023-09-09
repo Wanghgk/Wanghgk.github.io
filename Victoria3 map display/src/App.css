@@ -65,15 +65,15 @@
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgb(30,30,45);
 }
 
 .drop-down li {
   height: 40px;
   line-height: 40px;
   margin-top: 0;
-  border: solid rgba(30,30,45,0.85) 1px;
-  border-top: solid #aaa 1px;
+  border: solid #e3e3e3 1px;
+  border-top: solid rgba(227,227,227,0.85) 1px;
+  background-color: rgb(122, 109, 101);
 }
 
 .edition-item {

@@ -881,5 +881,7 @@
  "STATE_HOKKAIDO_JAP":"日本北海道",
  "STATE_TOMSK_CHI":"大清托木斯克",
  "STATE_KIRGHIZIA_CHI":"大清吉尔吉斯",
- "STATE_GUANGDONG_POR":"澳门"
+ "STATE_GUANGDONG_POR":"澳门",
+ "STATE_SUNDA_ISLANDS_POR":"葡萄牙巽他群岛",
+ "STATE_SUNDA_ISLANDS_DEI":"荷属东印度巽他群岛"
 }

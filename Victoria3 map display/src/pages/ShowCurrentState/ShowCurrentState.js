@@ -1,6 +1,8 @@
 import React from "react"
 import SubPub from "pubsub-js";
-import ChineseName from "../../states_l_simp_chinese.json"
+import ChineseColorName from "../../states_l_simp_chinese.json"
+import ChineseCountryName from "../../countries_l_simp_chinese.json"
+
 
 import "./ShowCurrentState.css"
 
@@ -29,17 +31,17 @@ export default class ShowCurrentState extends React.Component {
         return (
             <div className="CurrentState">
                 <span>
-                    <p>当前扮演国家：{globalCountry}</p>
+                    <p>当前扮演国家：{ChineseCountryName[globalCountry]+"("+globalCountry+")"}</p>
                 </span>
                 <span>
                     <p>当前地区：</p>
-                    <p>{ChineseName[currentState] ? ChineseName[currentState] : currentState}</p>
+                    <p>{ChineseColorName[currentState] ? ChineseColorName[currentState] : currentState}</p>
                 </span>
                 <span>
-                    <p>该地区现属国家：{currentCountry}</p>
+                    <p>该地区现属国家：{ChineseCountryName[currentCountry]+"("+currentCountry+")"}</p>
                 </span>
                 <span>
-                    <p>该地区开局属国家：{originalCountry}</p>
+                    <p>该地区开局属国家：{ChineseCountryName[originalCountry]+"("+originalCountry+")"}</p>
                 </span>
             </div>
         );

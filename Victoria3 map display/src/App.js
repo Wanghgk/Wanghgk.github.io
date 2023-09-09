@@ -7,7 +7,7 @@ import Search from "./pages/Search/Search";
 import './App.css';
 export default function App(){
     const element = useRoutes(routes);
-    const scrollContainerRef = React.createRef();
+    const mainContainRef = React.createRef();
 
     return (
         <div>
@@ -30,9 +30,9 @@ export default function App(){
             </div>
 
             <div className={"search-bar"}>
-                <Search/>
+                <Search getMap={mainContainRef}/>
             </div>
-            <div className={"main"}>
+            <div className={"main"} ref={mainContainRef}>
                 {element}
             </div>
         </div>
