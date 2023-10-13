@@ -3,6 +3,8 @@ import SubPub from "pubsub-js";
 import Color from "../../country_color.json"
 import States from "../../stateData_1.3.json"
 import Country from "../../state_country.json"
+import CountryName from "../../countryArray.json"
+import CountryChineseName from "../../countries_l_simp_chinese.json"
 import ShowCurrentState from "../ShowCurrentState/ShowCurrentState";
 
 import "./Search.css"
@@ -11,7 +13,7 @@ export default class Search extends React.Component {
 
     constructor() {
         super();
-        this.state = {left:0,top:0,country:"GBR"};
+        this.state = {left:0,top:0,country:"GBR",countryLower:[],show:"none"};
     }
 
     states=[];
@@ -162,6 +164,31 @@ export default class Search extends React.Component {
         }
     }
 
+    /*该函数是上个函数的平替，用于下拉框直接点击设置国家*/
+    setCountry=(e)=>{
+        this.setState({country:e,show:"none"});
+        this.targetCountryRef.current.value = e;
+    }
+
+    possibleCountry=()=>{
+        const country = this.targetCountryRef.current.value;
+        let possible = [];
+        let show = this.state.show;
+        if(country.length >= 4 || country===""){
+            show = "none";
+        }else{
+            show = "none";
+            CountryName.countries.map((e)=>{
+                if(e.name.indexOf(country) === 0){
+                    possible.push(e.name);
+                    show = "visible"
+                }
+            })
+        }
+        this.setState({countryLower:possible,show:show});
+        possible = [];
+    }
+
     setColor=(e,index)=>{
         const {country} = this.state;
         SubPub.publish('globalCountry', {globalCountry:country,globalColorIndex:index});
@@ -218,7 +245,8 @@ export default class Search extends React.Component {
     }
 
     render(){
-        const {left,top,country} = this.state;
+        const {left,top,country,countryLower,show} = this.state;
+        const {addScale,subScale} = this.props;
         return (
         <div className="operate-table"
              onMouseDown={(e)=>{this.grabBegin(e)}}
@@ -229,7 +257,14 @@ export default class Search extends React.Component {
              onTouchEnd={this.grabOver}
              style={{left:left,top:top}}>
             <div className="Search">
-                <input className="CountryInput" ref={this.targetCountryRef} type="text" placeholder="输入所选国家三位英文简称" onMouseEnter={this.grabOver}/>
+                <div>
+                    <input className="CountryInput" ref={this.targetCountryRef} type="text" placeholder="输入所选国家三位英文简称" onChange={this.possibleCountry} onMouseEnter={this.grabOver}/>
+                    <ul className={"name-list"} style={{'--show':show}}>
+                        {countryLower.map((e)=>{
+                            return <div className={"country-name"} key={e}><li onClick={()=>{this.setCountry(e)}}>{e}{CountryChineseName[e]}</li></div>
+                        })}
+                    </ul>
+                </div>
                 <div className="color-list">
                     <ul>
                         {
@@ -240,14 +275,20 @@ export default class Search extends React.Component {
                     </ul>
                 </div>
                 <button className="CountryButton" onClick={this.searchCountry} onMouseEnter={this.grabOver}>查询</button>
+            </div>
+            <div className={"scale-operate"}>
+                <button onClick={addScale}>放大</button>
+                <button onClick={subScale}>缩小</button>
+            </div>
+            <div className={"shot-operate"}>
                 <div className={"map-shot"}>
                     <button className="map-button" onClick={this.initWholeShot} onMouseEnter={this.grabOver}>加载全地图图片</button>
                     <button className="map-button" onClick={()=>{this.initCountryShot(country)}} onMouseEnter={this.grabOver}>加载当前国家图片</button>
                     <button className="map-button" onClick={this.clearCanvas} onMouseEnter={this.grabOver}>清空当前图片</button>
                 </div>
-                <button className="map-button" onClick={this.mapShot} onMouseEnter={this.grabOver}>生成图片</button>
-
+                <button className="get-shot" onClick={this.mapShot} onMouseEnter={this.grabOver}>生成图片</button>
             </div>
+
             <ShowCurrentState/>
             <div className={"shot-container"} style={{border:"solid #e3e3e3 2px"}}>
                 <canvas className={"show-shot"} ref={this.canvasRef} width={"8192"} height={"3616"} style={{display:""}}/>

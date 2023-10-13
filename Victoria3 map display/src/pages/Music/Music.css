@@ -1,0 +1,24 @@
+.music-operation {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    height: 98%;
+}
+
+.time {
+    justify-self: center;
+    align-self: center;
+}
+
+.play {
+
+}
+
+.volume {
+}
+
+.last{
+}
+
+.next{
+}

@@ -2,6 +2,14 @@
     display:none;
 }
 
+.search-bar {
+    z-index: 8;
+    position: fixed;
+    top: calc(var(--top-height) + 15px);
+    left: 15px;
+    pointer-events: none;
+}
+
 .map{
     left:0;
 
@@ -9,7 +17,8 @@
 
 .world{
     position: absolute;
-    background-color: #669999;
+    background-color: rgba(180,180,180,0.4);
+    backdrop-filter: blur(10px);
     z-index: -1145141919810;
 }
 

@@ -1,13 +1,14 @@
 import React from "react";
 import {NavLink,useRoutes } from "react-router-dom";
 import routes from "./routes"
-
-import Search from "./pages/Search/Search";
+import Music from "../src/pages/Music/Music"
 
 import './App.css';
 export default function App(){
     const element = useRoutes(routes);
-    const mainContainRef = React.createRef();
+
+
+
 
     return (
         <div>
@@ -27,32 +28,11 @@ export default function App(){
                         </ol>
                     </li>
                 </ul>
+                <Music/>
             </div>
-
-            <div className={"search-bar"}>
-                <Search getMap={mainContainRef}/>
-            </div>
-            <div className={"main"} ref={mainContainRef}>
+            <div className={"main"}>
                 {element}
             </div>
         </div>
     )
 }
-
-// export default class App extends React.Component {
-//     // element = useRoutes(routes)
-//     render(){
-//         // return (<Map_OnePointTwo/>);
-//         return (
-//             <div>
-//                 <div className="list-edition">
-//                     <NavLink className="edition-item" to="/1.2">1.2</NavLink>
-//                     <NavLink className="edition-item" to="/1.3">1.3</NavLink>
-//                 </div>
-//                 <div>
-//                     {/*{this.element}*/}
-//                 </div>
-//             </div>
-//         );
-//     }
-// }

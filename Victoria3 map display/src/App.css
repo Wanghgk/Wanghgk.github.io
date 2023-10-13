@@ -4,6 +4,47 @@
   --top-height: 55px;
 }
 
+body {
+  background: black url("../public/wallpaper/1.jpg") no-repeat;
+  background-size: 100vw 100vh;
+  animation: background-picture 120s infinite;
+}
+
+@keyframes  background-picture{
+  0%{
+    background: url("../public/wallpaper/1.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  12.5%{
+    background: url("../public/wallpaper/2.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  25%{
+    background: url("../public/wallpaper/3.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  37.5%{
+    background: url("../public/wallpaper/4.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  50%{
+    background: url("../public/wallpaper/5.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  62.5%{
+    background: url("../public/wallpaper/6.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  75%{
+    background: url("../public/wallpaper/7.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+  87.5%{
+    background: url("../public/wallpaper/8.jpg") no-repeat;
+    background-size: 100vw 100vh;
+  }
+}
+
 .list-edition{
   z-index: 10;
   font-size: 1.2em;
@@ -14,6 +55,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between ;
+  user-select: none;
 }
 
 .logo-div {
@@ -92,13 +134,7 @@
 
 
 
-.search-bar {
-  z-index: 8;
-  position: fixed;
-  top: calc(var(--top-height) + 15px);
-  left: 15px;
-  pointer-events: none;
-}
+
 
 
 /*.edition-item.active{*/
