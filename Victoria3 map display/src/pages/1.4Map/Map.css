@@ -1,0 +1,38 @@
+::-webkit-scrollbar{
+    display:none;
+}
+
+.search-bar {
+    z-index: 8;
+    position: fixed;
+    top: calc(var(--top-height) + 15px);
+    left: 15px;
+    pointer-events: none;
+}
+
+.map{
+    left:0;
+
+}
+
+.world{
+    position: absolute;
+    background-color: rgba(180,180,180,0.4);
+    backdrop-filter: blur(10px);
+    z-index: -1145141919810;
+}
+
+.scale {
+    --scale: 0.3;
+    scale: var(--scale);
+    float: left;
+}
+
+.scroll-container {
+    top: var(--top-height);
+    height: calc(100vh - var(--top-height));
+    position: relative;
+    width: 100%;
+    overflow: scroll;
+    scroll-behavior: auto;
+}

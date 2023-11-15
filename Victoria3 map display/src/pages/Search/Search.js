@@ -24,6 +24,14 @@ export default class Search extends React.Component {
     isGrab = false;
     targetCountryRef = createRef();
     canvasRef = createRef();
+    canvasHidden = createRef();
+
+    maxLeft = 0;
+    minLeft = 8192;
+    maxRight = 0;
+    minRight = 8192
+    maxUp = 0;
+    minBottom = 3616;
 
     initCountryShot=(country)=>{
         const canvas = this.canvasRef.current;
@@ -53,6 +61,18 @@ export default class Search extends React.Component {
                     let height = e.top - e.bottom;
                     let x = e.left;
                     let y = e.bottom;
+                    if(e.left < this.minLeft)
+                        this.minLeft = e.left;
+                    if(e.left > this.maxLeft)
+                        this.maxLeft = e.left;
+                    if(e.right > this.maxRight)
+                        this.maxRight = e.right;
+                    if(e.right < this.minRight)
+                        this.minRight = e.right;
+                    if(e.top > this.maxUp)
+                        this.maxUp = e.top;
+                    if(e.bottom < this.minBottom)
+                        this.minBottom = e.bottom;
                     // console.log(x,Number.isInteger(x),y,Number.isInteger(y),width,Number.isInteger(width),height,Number.isInteger(height));
                     let outThisImgData = ctx.getImageData(x, y, width, height);
                     let thisImgData = outThisImgData.data;
@@ -81,6 +101,10 @@ export default class Search extends React.Component {
     initWholeShot=()=>{
         const canvas = this.canvasRef.current;
         const ctx = canvas.getContext('2d');
+        this.minLeft = 0;
+        this.maxRight = 8192;
+        this.minBottom = 0;
+        this.maxUp = 3616;
         // let image = new Image();
         // image.src = "./1.3_states_doubleTransparent/STATE_ALASKA.png"
         // ctx.drawImage(image,0,0);
@@ -130,8 +154,29 @@ export default class Search extends React.Component {
     }
     mapShot=()=>{
         const canvas = this.canvasRef.current;
+        const canvasHidden = this.canvasHidden.current;
+        const ctx = canvas.getContext('2d');
+        const ctxh = canvasHidden.getContext('2d');
 
-        const dataUrl = canvas.toDataURL('image/png');
+        if(this.maxRight > this.minLeft) {
+            canvasHidden.width = this.maxRight - this.minLeft;
+        }else{
+            canvasHidden.width = 8192;
+        }
+        if(this.maxUp > this.minBottom){
+            canvasHidden.height = this.maxUp - this.minBottom;
+        }else{
+            canvasHidden.height = 3616;
+        }
+
+        // console.log("left:"+this.minLeft,"right:"+this.maxRight,"bottom:"+this.minBottom,"up:"+this.maxUp);
+
+        let outThisImgData = ctx.getImageData(this.minLeft,this.minBottom,this.maxRight - this.minLeft,this.maxUp - this.minBottom);
+        ctxh.putImageData(outThisImgData,0,0);
+
+
+
+        const dataUrl = canvasHidden.toDataURL('image/png');
         // console.log(dataUrl);
 // 假设 imageData 包含了要下载的图像数据，可以是一个包含 Base64 字符串的变量
         const imageData = dataUrl; // 替换为您的 Base64 数据
@@ -147,18 +192,32 @@ export default class Search extends React.Component {
 
     clearCanvas=()=>{
         const canvas = this.canvasRef.current;
+        const canvasHidden = this.canvasHidden.current;
         const ctx = canvas.getContext('2d');
+        const ctxh = canvasHidden.getContext('2d');
         // let image = new Image();
         // image.src = "./1.3_states_doubleTransparent/STATE_ALASKA.png"
         // ctx.drawImage(image,0,0);
         let w = canvas.width;
         let h = canvas.height;
+        this.minLeft = 8192;
+        this.maxRight = 0;
         ctx.clearRect(0, 0, w, h);
+        ctxh.clearRect(0,0,this.maxRight - this.minLeft,this.maxUp - this.minBottom);
+        this.maxLeft = 0;
+        this.minLeft = 8192;
+        this.maxRight = 0;
+        this.minRight = 8192
+        this.maxUp = 0;
+        this.minUp = 3616;
+        this.maxBottom = 0;
+        this.minBottom = 3616;
     }
     searchCountry=()=>{
         const country = this.targetCountryRef.current.value;
         if(Color[country]!==undefined){
             this.setState({country:country});
+            this.setState({show:"none"});
         }else{
             alert("Country " + country + " does not exist.");
         }
@@ -292,6 +351,7 @@ export default class Search extends React.Component {
             <ShowCurrentState/>
             <div className={"shot-container"} style={{border:"solid #e3e3e3 2px"}}>
                 <canvas className={"show-shot"} ref={this.canvasRef} width={"8192"} height={"3616"} style={{display:""}}/>
+                <canvas style={{display:"none"}} ref={this.canvasHidden}/>
             </div>
 
         </div>

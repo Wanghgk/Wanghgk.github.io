@@ -22,16 +22,20 @@ export default function App(){
                         <NavLink className="edition-item" to="/">首页</NavLink>
                     </li>
                     <li>
-                        <span className="edition-item">版本</span>
+                        <NavLink className="edition-item" to="/edition">版本</NavLink>
                         <ol className="drop-down">
                             <li><NavLink className="edition-item" to="/1.3">1.3</NavLink></li>
+                            <li><NavLink className="edition-item" to="/1.4">1.4</NavLink></li>
+                            <li><NavLink className="edition-item" to="/1.3">1.5</NavLink></li>
                         </ol>
                     </li>
                 </ul>
-                <Music/>
             </div>
             <div className={"main"}>
                 {element}
+            </div>
+            <div className={"below-bar"}>
+                <Music/>
             </div>
         </div>
     )
