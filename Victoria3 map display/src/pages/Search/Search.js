@@ -53,8 +53,8 @@ export default class Search extends React.Component {
                     let r = parseInt(colorString.substring(1, 3), 16);
                     let g = parseInt(colorString.substring(3, 5), 16);
                     let b = parseInt(colorString.substring(5), 16);
-                    let targetColor = [255, 255, 255];
                     let newColor = [r, g, b];
+                    let targetColor = [255,255,255];
                     // console.log(r,g,b);
 
                     let width = e.right - e.left;
@@ -78,12 +78,10 @@ export default class Search extends React.Component {
                     let thisImgData = outThisImgData.data;
                     // console.log(thisImgData.length);
                     for (let i = 0; i < thisImgData.length; i += 4) { // 4个值表示一个像素的RGBA颜色
-                        const pixelColor = [thisImgData[i], thisImgData[i + 1], thisImgData[i + 2]];
-
                         // 检查是否与目标颜色匹配
-                        if (pixelColor[0] === targetColor[0] &&
-                            pixelColor[1] === targetColor[1] &&
-                            pixelColor[2] === targetColor[2]) {
+                        if (thisImgData[i] === targetColor[0] &&
+                            thisImgData[i+1] === targetColor[1] &&
+                            thisImgData[i+2] === targetColor[2]) {
 
                             // 更改像素颜色为新的颜色
                             thisImgData[i] = newColor[0];
@@ -121,8 +119,8 @@ export default class Search extends React.Component {
                 let r = parseInt(colorString.substring(1, 3), 16);
                 let g = parseInt(colorString.substring(3, 5), 16);
                 let b = parseInt(colorString.substring(5), 16);
-                let targetColor = [255,255,255];
                 let newColor = [r,g,b];
+                let targetColor = [255,255,255];
                 // console.log(r,g,b);
 
                 let width = e.right-e.left;
@@ -134,12 +132,10 @@ export default class Search extends React.Component {
                 let thisImgData = outThisImgData.data;
                 // console.log(thisImgData.length);
                 for (let i = 0; i < thisImgData.length; i += 4) { // 4个值表示一个像素的RGBA颜色
-                    const pixelColor = [thisImgData[i], thisImgData[i + 1], thisImgData[i + 2]];
-
                     // 检查是否与目标颜色匹配
-                    if (pixelColor[0] === targetColor[0] &&
-                        pixelColor[1] === targetColor[1] &&
-                        pixelColor[2] === targetColor[2]) {
+                    if (thisImgData[i] === targetColor[0] &&
+                        thisImgData[i+1] === targetColor[1] &&
+                        thisImgData[i+2] === targetColor[2]) {
 
                         // 更改像素颜色为新的颜色
                         thisImgData[i] = newColor[0];
