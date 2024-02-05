@@ -29,9 +29,9 @@ export default function App(){
                     <li>
                         <NavLink className="edition-item" to="/edition">版本</NavLink>
                         <ol className="drop-down">
-                            <li><NavLink className="edition-item" to="/1.3">1.3</NavLink></li>
-                            <li><NavLink className="edition-item" to="/1.4">1.4</NavLink></li>
-                            <li><NavLink className="edition-item" to="/1.5">1.5</NavLink></li>
+                            <li><NavLink className="edition-item" to="/v3map/1.3">1.3</NavLink></li>
+                            <li><NavLink className="edition-item" to="/v3map/1.4">1.4</NavLink></li>
+                            <li><NavLink className="edition-item" to="/v3map/1.5">1.5</NavLink></li>
                         </ol>
                     </li>
                 </ul>

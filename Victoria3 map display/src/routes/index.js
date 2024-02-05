@@ -6,23 +6,23 @@ import Edition from "../pages/Edition/Edition";
 
 export default [
     {
-      path: '/',
+      path: '/v3map',
       element: <ReadMe/>
     },
     {
-        path:'/edition',
+        path:'/v3map/edition',
         element: <Edition/>,
     },
     {
-        path:'/1.3',
+        path:'/v3map/1.3',
         element: <Map_OnePointThree/>
     },
     {
-        path: '/1.4',
+        path: '/v3map/1.4',
         element: <Map_OnePointFour/>
     },
     {
-        path: '/1.5',
+        path: '/v3map/1.5',
         element: <Map_OnePointFour/>
     }
 ]
