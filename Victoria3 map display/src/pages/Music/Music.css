@@ -1,23 +1,203 @@
-.music-operation {
+@import "../../iconfont.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-user-select: none;
+}
+
+.shell {
+    z-index: 99;
+    width: 330px;
+    height: 580px;
+    border-radius: 15px;
+    /* background-color: #fff6e7; */
+    box-shadow: 0 10px 30px #00000085;
+    /* 设置上高光和左高光，使其看起来更加逼真 */
+    border-top: 1px solid rgba(255, 255, 255, .9);
+    border-left: 1px solid rgba(255, 255, 255, .9);
+    background: linear-gradient(to right bottom,
+    rgba(255, 255, 255, .6),
+    rgba(255, 255, 255, .3),
+    rgba(255, 255, 255, .2));
+    /* 重点：使元素背景模糊化 */
+    backdrop-filter: blur(6px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-items: center;
-}
-
-.music-operation div {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-self: center;
 }
 
-.time {
-    display: flex;
-    flex-direction: row ;
-    /*justify-self: center;*/
-    /*align-self: center;*/
+.cover {
+    width: 280px;
+    height: 270px;
+    overflow: hidden;
+    position: absolute;
+    top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px rgba(239, 234, 138, 0.5);
 }
+
+.cover img {
+    width: 100%;
+    height: 100%;
+}
+
+.shell input[type=range] {
+    -webkit-appearance: none !important;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(255, 255, 255);
+    height: 5px;
+    width: 150px;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.shell input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: #a3e5ff;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    box-shadow: -100vw 0 0 100vw rgb(160, 200, 250);
+}
+
+.shell input[type=range]::-moz-range-thumb {
+    background: #a3e5ff;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+}
+
+.shell input[type=range]::-ms-thumb {
+    -webkit-appearance: none !important;
+    background: #a3e5ff;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+}
+
+.info {
+    position: absolute;
+    top: 305px;
+    text-align: center;
+}
+
+.info .title {
+    font-size: 25px;
+    color: rgb(40, 45, 100);
+}
+
+.volume-box {
+    display: block;
+    position: absolute;
+    top: 370px;
+    z-index: 1;
+    padding: 0 20px;
+}
+
+.volume-box .voice {
+    position: absolute;
+    left: -15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(40, 45, 100);
+}
+
+.volume-box input[type=range] {
+    height: 5px;
+    width: 150px;
+    margin: 0 0 15px 0;
+}
+
+.music-box {
+    position: absolute;
+    top: 445px;
+}
+
+.music-box input[type=range] {
+    position: relative;
+    top: -7px;
+    height: 5px;
+    width: 200px;
+    margin: 0 0 10px 0;
+}
+
+.music-box input[type=range]::-webkit-slider-thumb {
+    height: 5px;
+    width: 7px;
+}
+
+.music-box .current-time {
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    transform: translateY(-70%);
+    font-size: 18px;
+    color: #252525;
+}
+
+.music-box .duration {
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-70%);
+    font-size: 18px;
+    color: rgb(40, 45, 100);
+}
+
+.music-box .play,
+.music-box .pause {
+    position: absolute;
+    left: 50%;
+    top: 55px;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgb(160, 200, 250);
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.music-box .play i,
+.music-box .pause i {
+    font-size: 36px;
+    color: rgb(40, 45, 100);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-48%, -50%);
+}
+
+.music-box .pause i {
+    font-size: 32px;
+    transform: translate(-50%, -50%);
+}
+
+.music-box .switch-song {
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(40, 45, 100);
+
+}
+
+/*.music-operation div {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    align-self: center;*/
+/*}*/
+
+/*.time {*/
+/*    display: flex;*/
+/*    flex-direction: row ;*/
+/*    !*justify-self: center;*!*/
+/*    !*align-self: center;*!*/
+/*}*/
 
 .play {
     width: 10%;

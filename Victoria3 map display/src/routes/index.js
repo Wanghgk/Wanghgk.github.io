@@ -20,5 +20,9 @@ export default [
     {
         path: '/1.4',
         element: <Map_OnePointFour/>
+    },
+    {
+        path: '/1.5',
+        element: <Map_OnePointFour/>
     }
 ]

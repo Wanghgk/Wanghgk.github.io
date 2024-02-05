@@ -1,3 +1,5 @@
+@import "./iconfont.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -130,17 +132,54 @@ body {
   cursor: pointer;
 }
 
+.below-bar .arrow-container {
+  position: absolute;
+  top: 5%;
+  left: -25px;
+  height: 25px;
+  width: 25px;
+  background: linear-gradient(to right bottom,
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, .8));
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.below-bar.close {
+  position: absolute;
+  top: 80px;
+  transform: translateX(345px);
+  transition: all 0.8s ease-in-out;
+}
+
 .below-bar {
-  border: solid 1px white;
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: 35%;
-  width: 30%;
-  height: 10%;
-  background-color: rgba(100,100,100,0.4);
-  backdrop-filter: blur(5px);
-  user-select: none;
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  transform: translateX(0px);
+  transition: all 0.8s ease-in-out;
+}
+
+.below-bar.close .arrow-container .toggle {
+  transform: translateY(40%) rotate(180deg);
+  color: rgb(40, 45, 100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+}
+
+.below-bar .toggle {
+  transform: translateY(40%) rotate(0deg);
+  color: rgb(40, 45, 100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
 }
 
 

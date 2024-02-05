@@ -3,6 +3,7 @@ import Songs from '../../music.json'
 
 import "./Music.css"
 
+
 export default class Music extends React.Component {
     constructor() {
         super();
@@ -11,9 +12,15 @@ export default class Music extends React.Component {
 
     music = createRef()
     volume = createRef()
+    playPause = createRef()
 
-    play=()=>{
+    play=(e)=>{
         const {isPlay} = this.state;
+        e.currentTarget.classList.toggle("play");
+        e.currentTarget.classList.toggle("pause");
+        this.playPause.current.classList.toggle("icon-bofang")
+        this.playPause.current.classList.toggle("icon-zanting")
+
         if(isPlay){
             let tmpVolume = this.music.current.volume;
             setTimeout(()=>{
@@ -113,19 +120,40 @@ export default class Music extends React.Component {
         const {isPlay,isLoud,song,progressTime,musicLength} = this.state;
         return (
             <div className={"music"}>
-                <audio ref={this.music} src={"./music/"+Songs.music[song]} onTimeUpdate={this.progressBarUpdate} onDurationChange={this.progressGetDuration} onEnded={this.nextSong}></audio>
-                <div className={"music-operation"}>
-                    <div>
-                        <img className={"play"} src={isPlay?"./music_image/暂停.png":"./music_image/播放.png"} onClick={this.play}/>
-                        <img className={"last"} src={"./music_image/上一首.png"} onClick={this.lastSong}/>
-                        <img className={"voice"} src={isLoud?"./music_image/音量.png":"./music_image/静音.png"} onClick={()=>{this.setLoud(0)}}/>
-                        <input ref={this.volume} className={"volume"} type={"range"} max={100} min={0} onChange={(e)=>{this.setLoud(e)}}/>
-                        <img className={"next"} src={"./music_image/下一首.png"} onClick={this.nextSong}/>
+                <div className={"shell"}>
+                    <div className={"cover"}>
+                        <img src={"./music_image/" + Songs.music[song].picture}/>
                     </div>
-                    <div className={"time"}>
-                        <span>{Math.floor(progressTime/60) + ":" + ((progressTime%60 < 10) ? "0" : "") + Math.floor(progressTime%60) + "/" + (musicLength/60).toFixed() + ":" + ((musicLength%60 < 10) ? "0" : "") + (musicLength%60).toFixed()}</span>
-                        <input className={"progress_bar"} type={"range"} max={musicLength} min={0} value={progressTime} onChange={(e)=>{this.changeProgressBar(e)}}/>
+                    <div className={"info"}>
+                        <div className={"title"}>{Songs.music[song].name}</div>
                     </div>
+                    <div className={"volume-box"}>
+                        <i className={"voice iconfont icon-shengyin_shiti"} onClick={(e) => {
+                        e.currentTarget.classList.toggle("icon-shengyin_shiti")
+                        e.currentTarget.classList.toggle("icon-yinliangguan")
+                        this.setLoud(0)
+                        }}></i>
+                        <input ref={this.volume} className={"volume-range"} type={"range"} max={100} min={0}
+                               onChange={(e) => {
+                                   this.setLoud(e)
+                               }}/>
+                    </div>
+                    <div className={"music-box"}>
+                        <i className={"switch-song iconfont icon-shangyishou"} onClick={this.lastSong}></i>
+                        <span className={"play"} onClick={this.play}>
+                            <i className={"iconfont icon-bofang"} ref={this.playPause}></i>
+                        </span>
+                        <span className={"current-time"}>{Math.floor(progressTime / 60) + ":" + ((progressTime % 60 < 10) ? "0" : "") + Math.floor(progressTime % 60)}</span>
+                        <input className={"progress_bar"} type={"range"} max={musicLength} min={0} value={progressTime}
+                               onChange={(e) => {
+                                   this.changeProgressBar(e)
+                               }}/>
+                        <span className={"duration"}>{(musicLength / 60).toFixed() + ":" + ((musicLength % 60 < 10) ? "0" : "") + (musicLength % 60).toFixed()}</span>
+                        <i className={"switch-song iconfont icon-xiayishou"} onClick={this.nextSong}></i>
+                    </div>
+                    <audio ref={this.music} src={"./music/" + Songs.music[song].sound}
+                           onTimeUpdate={this.progressBarUpdate} onDurationChange={this.progressGetDuration}
+                           onEnded={this.nextSong}></audio>
                 </div>
             </div>
         );
