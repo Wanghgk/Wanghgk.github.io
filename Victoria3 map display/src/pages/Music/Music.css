@@ -91,10 +91,15 @@
     color: rgb(40, 45, 100);
 }
 
+.info .lyric {
+    font-size: 20px;
+    color: #f6e65b;
+}
+
 .volume-box {
     display: block;
     position: absolute;
-    top: 370px;
+    top: 400px;
     z-index: 1;
     padding: 0 20px;
 }

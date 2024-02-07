@@ -24,10 +24,10 @@ export default function App(){
                 </div>
                 <ul className="menu">
                     <li>
-                        <NavLink className="edition-item" to="/">首页</NavLink>
+                        <NavLink className="edition-item" to="/v3map">首页</NavLink>
                     </li>
                     <li>
-                        <NavLink className="edition-item" to="/edition">版本</NavLink>
+                        <NavLink className="edition-item" to="/v3map/edition">版本</NavLink>
                         <ol className="drop-down">
                             <li><NavLink className="edition-item" to="/v3map/1.3">1.3</NavLink></li>
                             <li><NavLink className="edition-item" to="/v3map/1.4">1.4</NavLink></li>

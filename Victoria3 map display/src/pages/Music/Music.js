@@ -1,5 +1,6 @@
 import React,{createRef} from 'react'
 import Songs from '../../music.json'
+import Lyrics from '../../lyric.json'
 
 import "./Music.css"
 
@@ -7,7 +8,7 @@ import "./Music.css"
 export default class Music extends React.Component {
     constructor() {
         super();
-        this.state = {isPlay:false,isLoud:true,song:0,progressTime:0,musicLength:0,voice:50}
+        this.state = {isPlay:false,isLoud:true,song:0,progressTime:0,musicLength:0,voice:50,currentLyric:""}
     }
 
     music = createRef()
@@ -98,7 +99,23 @@ export default class Music extends React.Component {
 
     progressBarUpdate=()=>{
         let currentTime = this.music.current.currentTime;
-        this.setState({progressTime:currentTime});
+
+        const {song} = this.state
+        const name = Songs.music[song].name
+        const lyric = Lyrics.songs[name]
+        let i
+        for(i = 1;i < lyric.length;++i){
+            if(currentTime < lyric[i].timeout)
+                break;
+        }
+
+        const currentLyric = lyric[i-1].Irc
+
+        console.log("lyric[i]:",lyric[i-1],"i-1:",i-1)
+
+        // const currentLyric = ""
+
+        this.setState({progressTime:currentTime,currentLyric:currentLyric});
     }
 
     changeProgressBar=(e)=>{
@@ -117,7 +134,7 @@ export default class Music extends React.Component {
     }
 
     render() {
-        const {isPlay,isLoud,song,progressTime,musicLength} = this.state;
+        const {isPlay,isLoud,song,progressTime,musicLength,currentLyric} = this.state;
         return (
             <div className={"music"}>
                 <div className={"shell"}>
@@ -126,6 +143,7 @@ export default class Music extends React.Component {
                     </div>
                     <div className={"info"}>
                         <div className={"title"}>{Songs.music[song].name}</div>
+                        <div className={"lyric"}>{currentLyric}</div>
                     </div>
                     <div className={"volume-box"}>
                         <i className={"voice iconfont icon-shengyin_shiti"} onClick={(e) => {
